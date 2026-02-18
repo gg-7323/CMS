@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+}
+
+/* Primary accent helper: blue/green/etc backgrounds with readable text */
+.primary-accent {
+  background-color: var(--accent) !important;
+  color: #ffffff !important;
+}
+html[data-theme='dark'] .primary-accent,
+html[data-theme^='dark-'] .primary-accent {
+  /* In dark palettes, use dark text when accent is light */
+  color: #111827 !important;
+}
+
+html, body, #root { height: 100%; }
+body { margin: 0; }
+
+/* Theme palettes applied via data-theme on <html> */
+:root {
+  --app-bg: linear-gradient(to bottom, #f9fafb, #ffffff);
+  --app-text: #111827;
+  --accent: #111827;
+}
+
+html[data-theme='dark'] {
+  --app-bg: linear-gradient(to bottom, #0a0a0a, #171717);
+  --app-text: #fafafa;
+  /* Use a blue accent for the base dark theme so primary buttons are coloured, not flat gray */
+  --accent: #60a5fa;
+}
+
+html[data-theme='dark-red'] {
+  --app-bg: linear-gradient(to bottom, #1a0507, #3b0b13);
+  --app-text: #fee2e2;
+  --accent: #f97373;
+}
+
+html[data-theme='dark-yellow'] {
+  --app-bg: linear-gradient(to bottom, #1a1304, #3b2607);
+  --app-text: #fef3c7;
+  --accent: #facc15;
+}
+
+html[data-theme='dark-blue'] {
+  --app-bg: linear-gradient(to bottom, #020617, #0b1120);
+  --app-text: #dbeafe;
+  --accent: #60a5fa;
+}
+
+html[data-theme='dark-green'] {
+  --app-bg: linear-gradient(to bottom, #022c22, #064e3b);
+  --app-text: #d1fae5;
+  --accent: #6ee7b7;
+}
+
+html[data-theme='dark-purple'] {
+  --app-bg: linear-gradient(to bottom, #14001f, #1e1030);
+  --app-text: #ede9fe;
+  --accent: #a855f7;
+}
+
+html[data-theme='dark-orange'] {
+  --app-bg: linear-gradient(to bottom, #1b1004, #3b1f07);
+  --app-text: #ffedd5;
+  --accent: #fb923c;
+}
+
+html[data-theme='dark-teal'] {
+  --app-bg: linear-gradient(to bottom, #022c33, #044e54);
+  --app-text: #ccfbf1;
+  --accent: #22d3ee;
+}
+
+html[data-theme='dark-pink'] {
+  --app-bg: linear-gradient(to bottom, #2b0018, #3b0b2f);
+  --app-text: #fce7f3;
+  --accent: #fb7185;
+}
+
+html[data-theme='light-red'] {
+  --app-bg: linear-gradient(to bottom, #fff1f2, #ffffff);
+  --app-text: #111827;
+  --accent: #dc2626;
+}
+
+html[data-theme='light-yellow'] {
+  --app-bg: linear-gradient(to bottom, #fff7ed, #ffffff);
+  --app-text: #111827;
+  --accent: #ca8a04;
+}
+
+html[data-theme='light-blue'] {
+  --app-bg: linear-gradient(to bottom, #eff6ff, #ffffff);
+  --app-text: #111827;
+  --accent: #2563eb;
+}
+
+html[data-theme='light-green'] {
+  --app-bg: linear-gradient(to bottom, #ecfdf5, #ffffff);
+  --app-text: #111827;
+  --accent: #16a34a;
+}
+
+html[data-theme='light-purple'] {
+  --app-bg: linear-gradient(to bottom, #f5f3ff, #ffffff);
+  --app-text: #111827;
+  --accent: #7c3aed;
+}
+
+html[data-theme='light-orange'] {
+  --app-bg: linear-gradient(to bottom, #fff7ed, #ffffff);
+  --app-text: #111827;
+  --accent: #ea580c;
+}
+
+html[data-theme='light-teal'] {
+  --app-bg: linear-gradient(to bottom, #f0fdfa, #ffffff);
+  --app-text: #111827;
+  --accent: #0d9488;
+}
+
+html[data-theme='light-pink'] {
+  --app-bg: linear-gradient(to bottom, #fdf2f8, #ffffff);
+  --app-text: #111827;
+  --accent: #ec4899;
+}
+
+/* Fallback accent for plain light theme */
+html[data-theme='light'] {
+  /* Make plain light palette use blue accent so primary button is blue */
+  --accent: #2563eb;
+}
+
+/* Utility hook for app background if needed */
+.app-surface {
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+/* Force full-white content card area for light modes */
+html[data-theme='light'] .app-surface main,
+html[data-theme^='light-'] .app-surface main {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important; /* Tailwind gray-200 */
+}
+
+/* In light theme, make all standard form controls use white backgrounds */
+html[data-theme='light'] input,
+html[data-theme='light'] textarea,
+html[data-theme='light'] select,
+html[data-theme^='light-'] input,
+html[data-theme^='light-'] textarea,
+html[data-theme^='light-'] select {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* In light theme, force primary content cards to white, overriding any old dark styles */
+html[data-theme='light'] .app-surface main > div,
+html[data-theme='light'] .app-surface main section,
+html[data-theme='light'] .app-surface main .card,
+html[data-theme='light'] .app-surface main .rounded-xl,
+html[data-theme^='light-'] .app-surface main > div,
+html[data-theme^='light-'] .app-surface main section,
+html[data-theme^='light-'] .app-surface main .card,
+html[data-theme^='light-'] .app-surface main .rounded-xl {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* In light theme, neutralize any Tailwind dark:bg-* utilities inside the main app surface */
+html[data-theme='light'] .app-surface [class*='dark:bg-'],
+html[data-theme^='light-'] .app-surface [class*='dark:bg-'] {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* TabBar: keep items light in light themes */
+html[data-theme='light'] .tabbar-root .tabbar-item,
+html[data-theme^='light-'] .tabbar-root .tabbar-item {
+  background-color: #ffffff !important;
+  color: #111827;
+}
+
+html[data-theme='light'] .tabbar-root .tabbar-item:hover,
+html[data-theme^='light-'] .tabbar-root .tabbar-item:hover {
+  background-color: #ffffff !important;
+}
+
+/* Simple, shared animations */
+@keyframes cms-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.anim-fade-in {
+  animation: cms-fade-in 220ms ease-out;
+}
+
+.anim-fade-in-slow {
+  animation: cms-fade-in 320ms ease-out;
+}
+
+@keyframes cms-pulse-soft {
+  0% { transform: scale(0.98); opacity: 0.7; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.99); opacity: 0.85; }
+}
+
+.anim-pulse-soft {
+  animation: cms-pulse-soft 260ms ease-out;
+}
+
+@keyframes cms-saving-stripe {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
+.tabbar-progress-inner {
+  background-color: var(--accent);
+}
+
+.anim-saving-stripe {
+  animation: cms-saving-stripe 900ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

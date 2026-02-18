@@ -1,0 +1,30 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# API proxy (set to your deployed backend URL)
+[[redirects]]
+  from = "/api/*"
+  to = "https://YOUR-BACKEND-URL/api/:splat"
+  status = 200
+  force = true
+
+# WebSocket proxy
+[[redirects]]
+  from = "/ws/*"
+  to = "wss://YOUR-BACKEND-URL/ws/:splat"
+  status = 200
+  force = true
+
+# Uploads passthrough
+[[redirects]]
+  from = "/uploads/*"
+  to = "https://YOUR-BACKEND-URL/uploads/:splat"
+  status = 200
+  force = true
